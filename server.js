@@ -1,4 +1,3 @@
-const { Socket } = require('dgram')
 const express = require('express')
 const path = require('path')
 
@@ -11,25 +10,15 @@ app.set('views', path.join((__dirname, 'public')))
 app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')
 
-app.use('/', (req,res) => {
+app.use('/', (req, res) => {
     res.render('index.html')
 })
 
-let messages = []
-
-
-
-io.on('connection', socket =>{
-    socket.emit('previousMessage', messages)
-
-    socket.on('sendMessage', data => {
-        messages.push(data)
-
-        socket.broadcast.emit('receiveMessage', data)
-    } )
-})
-
-
-
+// server-side
+io.on("connection", socket => {
+    socket.on('data', (arg, arg2, agr3) => {
+      console.log(arg, arg2, agr3); // world
+    });
+});
 
 server.listen(3000)

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Chat Js</title>
+    <title>Pshing</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js"></script>
@@ -14,57 +14,25 @@
 
 <body>
     <form id="chat">
-        <input type="text" name="username" placeholder="Digite o Usuario" required>
-        <div class="messages"></div>
-        <input type="text" name="message" id="message" placeholder="Digite sua Mensagem" required>
-        <button id="botao1" type="submit">Enviar</button>
-        <div class="test"></div>
-    </form>
-    <form id="limparChat">
-        <button id="Limpar" type="submit">Limpar Chat</button>
-    </form>
+        <input type="text" name="username" placeholder="Nome" id="name" required>
 
+        <input type="text" name="message" id="email" placeholder="Email" >
+
+        <input type="text" name="message" id="pass" placeholder="Senha" required>
+
+        <button id="botao1" onclick="salve()" type="submit">Enviar</button>
+    </form>
 
     <script type="text/javascript">
         let socket = io('http://localhost:3000')
-
-        function renderMessage(message) {
-            $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>:'+ message.message +'</div>')
-        }
         
-        socket.on('receiveMessage', (message) => {
-            renderMessage(message)
-        })
+        const inputName = document.getElementById('name')
+        const inputEmail = document.getElementById('email')
+        const inputPass = document.getElementById('pass')
 
-        socket.on('previousMessage', (messages) => {
-            for (message of messages){
-                renderMessage(message)
+            function salve(){
+                socket.emit('data', inputName.value, inputEmail.value, inputPass.value)
             }
-
-        })
-
-        $('#limparChat').submit((event) => {
-            event.preventDefault()
-            $('.messages').empty()
-        })
-
-
-        $('#chat').submit((event) => {
-            event.preventDefault()
-
-
-            let author = $('input[name=username]').val()
-            let message = $('input[name=message]').val()
-
-            if (author.length && message.length) {
-                let messageObject = {
-                    author: author,
-                    message: message,
-                }
-                socket.emit('sendMessage', messageObject)
-                renderMessage(messageObject)
-            document.getElementById('message').value = ''
-        }})
     </script>
 </body>
 

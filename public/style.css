@@ -20,19 +20,15 @@ html, body {
     width: 600px;
     border: 1px solid #ddd;
     height: 50px;
-    padding: 0 20px;
+    text-align: center;
+    margin-bottom: 20px;
     font-size: 14px;
     border-radius: 14px;
     background-color: #151515;
   }
-  #limparChat{
-    display: flex;
-    justify-content: right;
-    flex-direction: row-reverse;
-  }
 
   #botao1 {
-    width: 600px;
+    width: 500px;
     height: 50px;
     font-size: 14px;
     background: #069;
@@ -43,28 +39,4 @@ html, body {
     margin-top: 10px;
     border-radius: 14px;
     background-color: #30475e;
-  }
-  
-  #Limpar{
-    width: 100px;
-    height: 50px;
-    font-size: 14px;
-    background: red;
-    text-align: center;
-    line-height: 50px;
-    font-weight: bold;
-    color: #FFF;
-    margin-top: -54px;
-    border-radius: 14px;
-    background-color: #E84545;
-  }
-
-  .messages {
-    width: 600px;
-    height: 400px;
-    margin: 20px 0;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 14px;
-    background-color:#f5f4f4 ;
   }
