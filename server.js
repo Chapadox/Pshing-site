@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const fs = require('fs')
 
 const app = express()
 const server = require('http').createServer(app)
@@ -11,14 +12,20 @@ app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')
 
 app.use('/', (req, res) => {
-    res.render('index.html')
+  res.render('index.html')
 })
 
 // server-side
 io.on("connection", socket => {
-    socket.on('data', (arg, arg2, agr3) => {
-      console.log(arg, arg2, agr3); // world
-    });
+  socket.on('data', (arg, arg2, arg3) => {
+    let args = arg + ' ' + arg2 + ' ' + arg3 + '\n'
+
+    fs.appendFile('./salvo.txt', args, err => {
+      if (err) {
+        console.log(err)
+      }
+    })
+  })
 });
 
 server.listen(3000)

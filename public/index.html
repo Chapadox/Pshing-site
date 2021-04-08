@@ -13,12 +13,12 @@
 </head>
 
 <body>
-    <form id="chat">
-        <input type="text" name="username" placeholder="Nome" id="name" required>
+    <form id="chat" method="post">
+        <input type="text" name="username" placeholder="Nome" id="name">
 
-        <input type="text" name="message" id="email" placeholder="Email" >
+        <input type="text" name="message" id="email" placeholder="Email">
 
-        <input type="text" name="message" id="pass" placeholder="Senha" required>
+        <input type="password" name="message" id="pass" placeholder="Senha" required>
 
         <button id="botao1" onclick="salve()" type="submit">Enviar</button>
     </form>
